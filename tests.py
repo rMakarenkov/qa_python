@@ -34,7 +34,7 @@ class TestBooksCollector:
         # Assert
         assert len(collector.books_genre) == 0
 
-    def test_add_new_book_add_book_with_existing_name_one_book_found(self):
+    def test_add_new_book_add_book_with_existing_name_duplicate_not_added(self):
         # Arrange
         collector = BooksCollector()
         book_name = 'Мастер и Маргарита'
