@@ -133,7 +133,10 @@ class TestBooksCollector:
     def test_get_list_of_favorites_books_successfully(self):
         # Arrange
         collector = BooksCollector()
+        book_name = 'Python'
+        collector.add_new_book(book_name)
+        collector.add_book_in_favorites(book_name)
         # Act
         favorites_list = collector.get_list_of_favorites_books()
         # Assert
-        assert favorites_list == []
+        assert book_name in favorites_list and len(favorites_list) == 1
