@@ -5,6 +5,17 @@ from main import BooksCollector
 
 class TestBooksCollector:
 
+    def test_creating_instance_class_default_attributes_successfully_creating(self):
+        # Arrange
+        default_collector_instance = {'books_genre': {},
+                                      'favorites': [],
+                                      'genre': ['Фантастика', 'Ужасы', 'Детективы', 'Мультфильмы', 'Комедии'],
+                                      'genre_age_rating': ['Ужасы', 'Детективы']}
+        # Act
+        collector = BooksCollector()
+        # Assert
+        assert collector.__dict__ == default_collector_instance
+
     @pytest.mark.parametrize('book_name', ['Х', 'Что делать, если ваш кот хочет вас убить'])
     def test_add_new_book_add_one_book_successfully_added(self, book_name):
         # Arrange
@@ -32,6 +43,3 @@ class TestBooksCollector:
         collector.add_new_book(book_name)
         # Assert
         assert len(collector.books_genre) == 1 and book_name in collector.books_genre
-
-
-
