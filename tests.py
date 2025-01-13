@@ -97,4 +97,43 @@ class TestBooksCollector:
         # Assert
         assert actual_books_genre == expected_books_genre
 
+    def test_get_books_for_children_successfully(self, create_collector_with_not_empty_book_genre):
+        # Arrange
+        collector = create_collector_with_not_empty_book_genre
+        expected_books_for_children = list(
+            filter(lambda book: collector.books_genre[book] not in collector.genre_age_rating,
+                   collector.books_genre.keys()))
+        # Act
+        actual_books_for_children = collector.get_books_for_children()
+        # Assert
+        print(actual_books_for_children, expected_books_for_children)
+        assert actual_books_for_children == expected_books_for_children
 
+    def test_add_book_in_favorites_add_existing_book_successfully(self):
+        # Arrange
+        collector = BooksCollector()
+        book_name = 'Book number one'
+        collector.add_new_book(book_name)
+        # Act
+        collector.add_book_in_favorites(book_name)
+        # Assert
+        assert book_name in collector.favorites and len(collector.favorites) == 1
+
+    def test_delete_book_from_favorites_one_existing_book_successfully(self):
+        # Arrange
+        collector = BooksCollector()
+        book_name = 'Не совсем стандартное название'
+        collector.add_new_book(book_name)
+        collector.add_book_in_favorites(book_name)
+        # Act
+        collector.delete_book_from_favorites(book_name)
+        # Assert
+        assert book_name not in collector.favorites
+
+    def test_get_list_of_favorites_books_successfully(self):
+        # Arrange
+        collector = BooksCollector()
+        # Act
+        favorites_list = collector.get_list_of_favorites_books()
+        # Assert
+        assert favorites_list == []
