@@ -1,24 +1,37 @@
+import pytest
+
 from main import BooksCollector
 
-# класс TestBooksCollector объединяет набор тестов, которыми мы покрываем наше приложение BooksCollector
-# обязательно указывать префикс Test
+
 class TestBooksCollector:
 
-    # пример теста:
-    # обязательно указывать префикс test_
-    # дальше идет название метода, который тестируем add_new_book_
-    # затем, что тестируем add_two_books - добавление двух книг
-    def test_add_new_book_add_two_books(self):
-        # создаем экземпляр (объект) класса BooksCollector
+    @pytest.mark.parametrize('book_name', ['Х', 'Что делать, если ваш кот хочет вас убить'])
+    def test_add_new_book_add_one_book_successfully_added(self, book_name):
+        # Arrange
         collector = BooksCollector()
+        # Act
+        collector.add_new_book(book_name)
+        # Assert
+        assert book_name in collector.books_genre and len(collector.books_genre) == 1
 
-        # добавляем две книги
-        collector.add_new_book('Гордость и предубеждение и зомби')
-        collector.add_new_book('Что делать, если ваш кот хочет вас убить')
+    @pytest.mark.parametrize('book_name', ['', 'Название книги: длина равна 41 символу...'])
+    def test_add_new_book_add_book_if_len_name_less_than1_or_greater_than40_book_not_added(self, book_name):
+        # Arrange
+        collector = BooksCollector()
+        # Act
+        collector.add_new_book(book_name)
+        # Assert
+        assert len(collector.books_genre) == 0
 
-        # проверяем, что добавилось именно две
-        # словарь books_rating, который нам возвращает метод get_books_rating, имеет длину 2
-        assert len(collector.get_books_rating()) == 2
+    def test_add_new_book_add_book_with_existing_name_one_book_found(self):
+        # Arrange
+        collector = BooksCollector()
+        book_name = 'Мастер и Маргарита'
+        collector.add_new_book(book_name)
+        # Act
+        collector.add_new_book(book_name)
+        # Assert
+        assert len(collector.books_genre) == 1 and book_name in collector.books_genre
 
-    # напиши свои тесты ниже
-    # чтобы тесты были независимыми в каждом из них создавай отдельный экземпляр класса BooksCollector()
+
+
