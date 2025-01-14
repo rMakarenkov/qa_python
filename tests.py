@@ -8,10 +8,12 @@ class TestBooksCollector:
 
     def test_creating_instance_class_with_default_attributes_successfully(self):
         # Arrange
-        default_collector_instance = {'books_genre': {},
-                                      'favorites': [],
-                                      'genre': ['Фантастика', 'Ужасы', 'Детективы', 'Мультфильмы', 'Комедии'],
-                                      'genre_age_rating': ['Ужасы', 'Детективы']}
+        default_collector_instance = {
+            'books_genre': {},
+            'favorites': [],
+            'genre': ['Фантастика', 'Ужасы', 'Детективы', 'Мультфильмы', 'Комедии'],
+            'genre_age_rating': ['Ужасы', 'Детективы']
+        }
         # Act
         collector = BooksCollector()
         # Assert
@@ -52,7 +54,7 @@ class TestBooksCollector:
         # Act
         collector.add_new_book(book_name)
         # Assert
-        assert len(collector.books_genre) == 1 and book_name in collector.books_genre
+        assert book_name in collector.books_genre and len(collector.books_genre) == 1
 
     def test_set_book_genre_existing_genre_successfully(self):
         # Arrange
@@ -77,7 +79,8 @@ class TestBooksCollector:
         # Assert
         assert actual_genre == book_genre
 
-    def test_get_books_with_specific_genre_existing_genre_successfully(self, create_collector_with_not_empty_book_genre):
+    def test_get_books_with_specific_genre_existing_genre_successfully(self,
+                                                                       create_collector_with_not_empty_book_genre):
         # Arrange
         collector = create_collector_with_not_empty_book_genre
         specific_genre = random.choice(collector.genre)
