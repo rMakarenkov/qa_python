@@ -1,1 +1,15 @@
 # qa_python
+# Список реализованных в проекте тестов:
+	1. test_creating_instance_class_with_default_attributes_successfully (тест создания экземпляра класса)
+	2. test_add_new_book_add_one_book_successfully (тест метода add_new_book с граничными значениями из тела метода)
+	3. test_add_new_book_add_one_book_genre_is_empty (проверка, что жанр = '' при добавлении новой книги)
+	4. test_add_new_book_add_book_if_len_name_less_than1_or_greater_than40_failed (негативный тест, добавление книги с граничными значениями, которые не удовлетворяют требованиям метода)
+	5. test_add_new_book_add_book_with_existing_name_failed (негативный тест, добавление уже существующей в словаре книги)
+	6. test_set_book_genre_existing_genre_successfully (тест установки жанра книги)
+	7. test_get_book_genre_existing_book_successfully (тест получения жанра книги)
+	8. test_get_books_with_specific_genre_existing_genre_successfully (тест получения списка книг, удовлетворяющих критерию искомого жанра)
+	9. test_get_books_genre_successfully (тест получения словаря books_genre)
+	10. test_get_books_for_children_successfully (тест получения доступных для детей книг)
+	11. test_add_book_in_favorites_add_existing_book_successfully (тест добавления книги в "Избранное")
+	12. test_delete_book_from_favorites_one_existing_book_successfully (тест удаления книги из "Избранного")
+	13. test_get_list_of_favorites_books_successfully (тест получения списка книг из "Избранного")
