@@ -106,7 +106,6 @@ class TestBooksCollector:
         # Act
         actual_books_for_children = collector.get_books_for_children()
         # Assert
-        print(actual_books_for_children, expected_books_for_children)
         assert actual_books_for_children == expected_books_for_children
 
     def test_add_book_in_favorites_add_existing_book_successfully(self):
